@@ -7,3 +7,4 @@ export class Person {
         console.log(`Hello EveryOne, My name is ${this.name}, I'm ${this.age} years old`);
     }
 }
+
