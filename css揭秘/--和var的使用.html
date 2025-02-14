@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>--和var的使用.html</title>
+    <style>
+        ul {
+            --test-color: purple;
+            --color: #ffff;
+            font-size: 20px;
+        }
+
+        ol {
+            --test-color: rebeccapurple;
+            --color: yellow;
+            font-size: 20px;
+        }
+
+        li {
+            background: var(--test-color);
+            color: var(--color);
+        }
+    </style>
+</head>
+<body>
+<ol>
+    <li>ol1</li>
+    <li>ol2</li>
+    <li>ol3</li>
+</ol>
+<ul>
+    <li>li1</li>
+    <li>li2</li>
+    <li>li3</li>
+</ul>
+</body>
+</html>

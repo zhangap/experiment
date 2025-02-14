@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弧形切角</title>
+    <style>
+        .box {
+            width: 800px;
+            height: 400px;
+            background: #58a;
+            margin: 0 auto;
+            background: radial-gradient(circle at top left, transparent 15px, #58a 0) top left,
+            radial-gradient(circle at top right, transparent 15px, #58a 0) top right,
+            radial-gradient(circle at bottom left, transparent 15px, #58a 0) bottom left,
+            radial-gradient(circle at bottom right, transparent 15px, #58a 0) bottom right;
+            background-size: 50% 50%;
+            background-repeat: no-repeat;
+        }
+
+        .svg-box {
+            width: 200px;
+            height: 200px;
+            border: 20px solid transparent;
+            border-image: 1 url('data:image/svg+xml,\
+ <svg xmlns="http://www.w3.org/2000/svg"\
+ width="3" height="3" fill="%2358a">\
+ <polygon points="0,1 1,0 2,0 3,1 3,2 2,3 1,3 0,2"/>\
+ </svg>');
+            background: #58a;
+            background-clip: padding-box;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+
+<div class="svg-box">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切角效果</title>
+    <style>
+        .btn {
+            width: 100px;
+            height: 50px;
+            background: red;
+            background: linear-gradient(-45deg, transparent, 15px, red 0);
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background: rebeccapurple;
+            margin: 10px auto;
+            background: linear-gradient(45deg, transparent, 15px, rebeccapurple 0) bottom left,
+            linear-gradient(-45deg, transparent, 15px, rebeccapurple 0) bottom right,
+            linear-gradient(135deg, transparent, 15px, rebeccapurple 0) top left,
+            linear-gradient(-135deg, transparent, 15px, rebeccapurple 0) top right;
+            background-size: 50% 50%;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="btn"></div>
+
+
+<div class="box"></div>
+</body>
+</html>

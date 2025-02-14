@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>蚂蚁行军边框</title>
+    <style>
+        @keyframes ants {
+            to {
+                background-position: 100%
+            }
+        }
+
+        .box {
+            width: 400px;
+            height: 200px;
+            padding: 1em;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+            repeating-linear-gradient(-45deg, black 0, black 25%, white 0, white 50%) 0 / .6em .6em;
+            animation: ants 12s linear infinite;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

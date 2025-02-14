@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平行四边形</title>
+    <style>
+        .wrap {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .item {
+            width: 100px;
+            height: 50px;
+            color: white;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            transform: skew(-45deg);
+            background: blue;
+        }
+
+        .box span {
+            transform: skew(45deg);
+        }
+
+        .box2 {
+
+            position: relative;
+        }
+
+        .box2::before {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            transform: skew(-45deg);
+            background: red;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="item box">
+        <span>首页</span>
+    </div>
+    <div class="item box2">综合查询</div>
+</div>
+
+</body>
+</html>

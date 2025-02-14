@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>background-position 的扩展语法方案</title>
+    <style>
+        .box {
+            width: 800px;
+            height: 400px;
+            background-image: url("./img/girl.png");
+            background-repeat: no-repeat;
+            border: 1px solid red;
+            background-position: bottom 20px right 10px;
+            box-sizing: border-box;
+            padding: 20px;
+            /*background-origin: content-box;*/
+            /*默认值*/
+            background-origin: padding-box;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>
