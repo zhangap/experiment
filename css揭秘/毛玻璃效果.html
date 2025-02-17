@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>毛玻璃效果</title>
+    <style>
+        body {
+            background: url("./img/tiger.png") 0/cover fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        main {
+            width: 600px;
+            height: 400px;
+            font-size: 20px;
+            box-sizing: border-box;
+            padding: 20px 10px;
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
+            border-radius: 10px;
+            line-height: 35px;
+            background: hsla(0, 0%, 100%, .3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        main::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            /*background: rgba(255, 0, 0, .5); !* 仅用于调试 *!*/
+            filter: blur(20px);
+            background: url("./img/tiger.png") 0/cover fixed;
+            margin: -30px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <blockquote>
+        "自2023年盛夏火爆出圈以来，发源于贵州省黔东南州榕江县的“村超”，不仅是一项活力四射的草根足球赛，更变身为助推地方经济社会发展的新模式，持续推动乡村振兴。
+        近年来，榕江县更是主动作为、积极探索，通过扩大参赛村队、在乡村集市举办趣味足球赛等形式，将“村超”流量更好地导入村村寨寨，助力当地乡村振兴工作迈入发展快车道。"
+        <footer>－
+            <cite>
+                Oscar Wilde,
+                The Picture of Dorian Gray
+            </cite>
+        </footer>
+    </blockquote>
+</main>
+</body>
+</html>
