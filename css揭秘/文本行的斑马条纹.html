@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本行的斑马条纹</title>
+    <style>
+        .box {
+            width: 600px;
+            height: 400px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+
+        pre {
+            padding: .5em;
+            line-height: 2;
+            background: beige linear-gradient(rgba(0, 0, 0, .2) 50%, transparent 0);
+            background-size: auto 4em;
+            background-origin: content-box;
+            tab-size: 2;
+        }
+
+        .amp {
+            font-family: Baskerville, "Goudy Old Style",
+            Garamond, Palatino, serif;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <pre>
+    function onGuiDang() {
+      const rows = tableRef.value.getSelectionRows();
+      if (!rows.length) {
+        return ElMessage.warning('请勾选要归档的数据');
+      }
+      const ids = rows.map((row) => {
+        return row.id;
+      });
+      guiDangDialog.visible = true;
+      guiDangDialog.formData.guidangReason = '';
+      guiDangDialog.formData.guidangReamrk = '';
+      guiDangDialog.formData.ids = ids;
+    }
+    </pre>
+
+    HTML <span class="amp">&amp;</span> CSS
+
+</div>
+</body>
+</html>

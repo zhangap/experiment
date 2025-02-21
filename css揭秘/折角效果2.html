@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>折角效果2</title>
+    <style>
+        .box {
+            width: 400px;
+            height: 200px;
+            background: #58a;
+        /*linear-gradient(to left bottom,*/
+        /*transparent 50%, rgba(0, 0, 0, .4) 0) no-repeat 100% 0 / 3em 1.73em,*/
+        /*linear-gradient(-150deg,transparent 1.5em, #58a 0);*/
+            background: linear-gradient(to left bottom, transparent 50%, rgba(0, 0, 0, .4) 0) no-repeat 100% 0/ 2em 2em,
+            linear-gradient(-135deg, transparent 1.45em, #58a 0);
+            /*为什么被注释掉的代码不行
+            原因在于（正如我们在“切角效果”一节中所讨论的那样）第二层渐变
+中的 2em 折角尺寸是写在色标中的，因此它是沿着渐变轴进行度量的，是对
+角线尺寸。另一方面，在 background-size 中的 2em 长度是背景贴片的宽
+度和高度，是在水平和垂直方向上进行度量的。
+为了将这两者对齐，我们需要选择以下任意一项进行调整，选择哪一项
+取决于我们最终想保留哪一方的尺寸设置。
+如果要保留对角线的 2em 长度，就要将 background-size 乘以 2 。
+如果要保留水平和垂直方向上的 2em 长度，就要用切角渐变的角标
+位置值除以 2 。
+由于 background-size 需要把这个长度重复两次，而且绝大多数的
+CSS 度量都不是在对角线上进行的，因此第二种方案更加合适。色标的位置
+值将变成 2 2 1.414 213 562
+2 = ≈ ，我们可以将其取整为 1.5em：
+            */ /*linear-gradient(-135deg, transparent 2em, #58a 0);*/
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

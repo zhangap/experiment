@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扩大可点击区域</title>
+    <style>
+        .box {
+            width: 400px;
+            margin: 100px auto;
+        }
+        .btn {
+            display: inline-block;
+            background: deeppink;
+            color: white;
+            box-sizing: border-box;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .btn1 {
+            border: 10px solid transparent;
+            /*background-clip 设置元素的背景（背景图片或颜色）是否延伸到边框、内边距盒子、内容盒子下面。*/
+            background-clip: padding-box;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <span class="btn btn1">按钮1</span>
+    <span class="btn btn2">按钮2</span>
+</div>
+</body>
+</html>

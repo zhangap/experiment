@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扩大可点击区域-利用伪元素</title>
+    <style>
+        .box {
+            width: 400px;
+            margin: 100px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: deeppink;
+            color: white;
+            box-sizing: border-box;
+            padding: 5px 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .btn1::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <span class="btn btn1">按钮1</span>
+    <span class="btn btn2">按钮2</span>
+</div>
+</body>
+</html>
+<script>
+    window.onload = function() {
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(ev) {
+                console.log(ev.currentTarget.innerText)
+            })
+        })
+    };
+</script>

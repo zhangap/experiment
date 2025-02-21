@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .dialog {
+            width: 800px;
+            height: 400px;
+        }
+        .title-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            font-size: 20px;
+        }
+        .title-box .close {
+            position: relative;
+        }
+        .title-box .close::before {
+            background: transparent;
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            cursor: pointer;
+        }
+        .dialog::backdrop {
+            background: rgba(0, 0, 0, 0.8);
+            /*transition: .5s background-color ease-in;*/
+        }
+
+    </style>
+</head>
+<body>
+<input type="button" id="btn" value="打开模态框"/>
+<dialog class="dialog">
+    <div class="title-box">
+        <span class="title">模态框</span>
+        <span class="close">x</span>
+    </div>
+    这个是模态框
+</dialog>
+</body>
+</html>
+<script>
+    const oBtn = document.getElementById('btn');
+    const oDialog = document.querySelector('.dialog');
+    const oClose = document.querySelector('.close');
+    oBtn.addEventListener('click', function () {
+        oDialog.showModal();
+    });
+    oClose.addEventListener('click', function () {
+        oDialog.close();
+    })
+</script>
+
