@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闪烁效果</title>
+    <style>
+        @keyframes blink-smooth {
+            to {
+                color: transparent;
+            }
+        }
+
+        .highlight {
+            animation: 1s blink-smooth 6 alternate;
+        }
+    </style>
+</head>
+<body>
+<div class="highlight">文字闪烁效果</div>
+</body>
+</html>
