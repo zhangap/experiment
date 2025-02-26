@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>根据兄弟元素的数量来设置样式</title>
+    <style>
+        li:first-child:nth-last-child(4),
+        li:first-child:nth-last-child(4) ~ li {
+            color: deeppink;
+            font-weight: bold;
+        }
+
+        li:nth-last-child(4) {
+            /*font-weight: bold;*/
+        }
+
+        li:first-child {
+            color: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>明月几时有？</li>
+    <li>把酒问青天。</li>
+    <li>不知天上宫阙今夕是何年。</li>
+    <li>我欲乘风归去，又恐琼楼玉宇，高处不胜寒。</li>
+    <li>起舞弄清影，何似在人间。</li>
+    <li>转朱阁，低绮户、照无眠。</li>
+    <li>不应有恨，何事长向别时圆？</li>
+    <li>人有悲欢离合,越有阴晴圆缺，此事古难全。</li>
+    <li>但愿人长久，千里共婵娟</li>
+</ul>
+</body>
+</html>

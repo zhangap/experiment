@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>垂直居中的方式1-绝对定位</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100%;
+            background: orange;
+        }
+
+        main {
+            width: 400px;
+            height: 100px;
+            background: #4b4a4a;
+            color: white;
+            /*margin: 0 auto;*/
+            text-align: center;
+            padding: 0;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            /*第一种：在宽度既定的情况下，利用margin-left: -width/2px; margin-top: -height/2px*/
+            /*margin-left: -200px;*/
+            /*margin-top: -100px;*/
+            /*第二种：利用transform*/
+            /*transform: translate(-50%, -50%);*/
+            /*第三种：利用calc函数来动态计算top和left*/
+            /*left: calc(50% - 200px);*/
+            /*top: calc(50% - 100px);*/
+        )
+
+
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+<main>
+    <h1>Am I centered yet?</h1>
+    <p>Center me, please!</p>
+</main>
+</body>
+</html>
