@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  let person = {
+    getGreeting() {
+      return 'hello'
+    }
+  };
+  let dog = {
+    getGreeting() {
+      return 'woff'
+    }
+  };
+
+  let friend = {
+    getGreeting() {
+        return super.getGreeting() + ',hi';
+      // return Object.getPrototypeOf(this).getGreeting.call(this) + ',hi';
+    }
+  }
+  //把原型设置设置为person
+  Object.setPrototypeOf(friend, person);
+  console.log(friend.getGreeting());
+  console.log(Object.getPrototypeOf(friend) === person);
+
+  //把原型设置为dog
+  Object.setPrototypeOf(friend, dog);
+  console.log(friend.getGreeting());
+  console.log(Object.getPrototypeOf(friend) === dog);
+</script>

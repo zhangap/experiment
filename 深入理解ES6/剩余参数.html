@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>剩余参数</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // 返回对象的指定属性值
+    function pick(object, ...args) {
+        const result = Object.create(null);
+
+        let key = ''
+        for (let i = 0; i < args.length; i++) {
+            key = args[i]
+            result[key] = object[key];
+        }
+        return result;
+    }
+
+    const person = {
+        name: '张三丰',
+        age: 150,
+        address: '武当',
+        title: '掌门人'
+    };
+
+    const personInfo = pick(person, 'name', 'title');
+    console.log(personInfo);
+    //剩余参数的限制：
+    // 1、一个函数只能有一个剩余参数，且只能放在最后
+    // 2、剩余参数不能在对象字面量的setter中使用，因为对象字面量的setter函数被限定只能使用单个参数
+</script>

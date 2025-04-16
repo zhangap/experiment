@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>001函数参数.html</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let value = 5;
+
+    function getValue() {
+        return Date.now();
+        // return value++;
+    }
+
+    function add(first, second = getValue()) {
+        return first + second;
+    }
+
+    //注意getValue函数执行时机：是在调用add方法的时候，才会去执行，并不是在函数声明的时候，就去执行了
+    debugger;
+    console.log(add(1, 1));
+    console.log(add(1));
+    setTimeout(() => {
+        console.log(add(1));
+    }, 5000);
+
+</script>

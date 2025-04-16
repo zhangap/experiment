@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象和数组解构</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let node = {
+        type: 'Identifier',
+        name: 'foo',
+        description: '',
+    };
+
+    //默认值：如果没有定义次属性，或者此属性的值为undefined,都会取默认值
+    //customName可以自定义名称
+    const {name: customName, type, description = '默认描述信息'} = node;
+    console.log(customName, type);
+    console.log('描述信息', description);
+
+    console.log('数组解构');
+    const colors = ['red', 'green', 'blue'];
+    const [firstColor, secondColor, thirdColor] = colors;
+    console.log(firstColor, secondColor, thirdColor);
+
+    console.log('互换值......');
+    let a = 1;
+    let b = 2;
+    [a, b] = [b, a];
+    console.log(a, b);
+
+    let [color1, ...color2] = colors;
+    console.log(color1, color2);
+    console.log(Array.isArray(color2));
+
+    console.log('混合解构');
+
+    const node2 = {
+        type: 'Identifier',
+        name: 'foo',
+        loc: {
+            start: {
+                line: 1,
+                column: 1,
+            },
+            end: {
+                line: 1,
+                column: 4,
+            }
+        },
+        range: [0, 3]
+    };
+
+    let {loc: {start}, range: [startIndex]} = node2;
+
+    console.log(start, startIndex);
+
+
+</script>

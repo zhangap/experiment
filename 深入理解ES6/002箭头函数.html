@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  const  arrowFn = () => {
+    console.log(arguments);
+  }
+
+  // 箭头函数中没有arguments
+  // arrowFn(1,2,3);
+
+  const sum = (num1, num2) => {
+    console.log(this);
+    return num1 + num2;
+  }
+
+  console.log(sum(1,2));
+  console.log(sum.call(null, 1,2))
+  const obj = {
+    name: 'zap'
+  }
+  console.log(sum.apply(obj, [1,2]));
+
+</script>
