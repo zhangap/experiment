@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let set = new Set();
+    set.add(1);
+    set.add('1');
+    console.log(set.size)
+    console.log(set.has('1'));
+
+    //set集合中不能放置重复的值
+    set = new Set([1, 2, 3, 4, 5, 5, 5, 5, 5, 5]);
+    console.log(set.size);
+
+    set.forEach((arg1, arg2, arg3) => {
+        console.log(arg1, arg2, arg3);
+    });
+
+    let processor = {
+        output(value) {
+            console.log(value);
+        },
+        process(dataSet) {
+            //如果这里用箭头函数的话，函数内部可以直接使用this
+            dataSet.forEach((value) => {
+                this.output(value);
+            });
+            //这里要把this作为forEach的第二个参数传过去，在函数内部才能够使用this对象
+            // dataSet.forEach(function (value) {
+            //     this.output(value);
+            // }, this)
+        }
+    };
+
+    processor.process(set);
+
+    // 数组和set集合之间的转换
+    let arr = [...set];
+    console.log(arr);
+
+
+    // 数组去重
+    const eliminateDuplicates = items => [...new Set(items)];
+
+    console.log(eliminateDuplicates([1, 2, 3, 3, 4, 2, 1, 2, 3, 5]));
+
+    set = new Set();
+    let key = {};
+    set.add(key);
+    console.log(set, set.size);
+
+    // 取消原始引用
+    key = null;
+    console.log(set.size);
+    // 重新获得原始引用
+    console.log([...set][0]);
+
+    console.log('WeakSet-----------')
+    set = new WeakSet();
+    key = {};
+    set.add(key);
+    //非对象的参数不能传入，以下代码会报错
+    // set.add('1');
+    console.log(set);
+    console.log(set.has(key));
+    key = null;
+    console.log(set);
+    //WeakSet与set的区别
+    // 1、WeakSet调用add方法，不能传入非对象参数
+    // 2、WeakSet不能迭代，不能被用在for of循环中
+    // 3、WeakSet无法暴露任何迭代器，因此没有任何编程手段可用于判断WeakSet的内容
+    // 4、WeakSet没有forEach方法
+    // 5、WeakSet没有size属性
+
+
+</script>

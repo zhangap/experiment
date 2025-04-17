@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // 有效等价于 /^.{10}$/
+    const hasLengthOf10 = {
+        [Symbol.match](value) {
+            return value.length === 10 ? [value.substring(0, 10)] : null;
+        },
+        [Symbol.replace](value, replacement) {
+            return value.length === 10 ? replacement : value;
+        },
+        [Symbol.search](value) {
+            return value.length === 10 ? 0 : -1;
+        },
+        [Symbol.split](value) {
+            return value.length === 10 ? ["", ""] : [value]
+        }
+    };
+    const message1 = "Hello World";
+    const message2 = "Hello John";
+
+    let match1 = message1.match(hasLengthOf10);
+    let match2 = message2.match(hasLengthOf10);
+    console.log(match1, match2);
+
+    const replace1 = message1.replace(hasLengthOf10, 'Howdy!');
+    const replace2 = message2.replace(hasLengthOf10, 'Howdy!');
+    console.log(replace1, replace2);
+
+    const search1 = message1.search(hasLengthOf10);
+    const search2 = message2.search(hasLengthOf10);
+    console.log(search1, search2);
+
+    const split1 = message1.split(hasLengthOf10);
+    const split2 = message2.split(hasLengthOf10);
+    console.log(split1, split2);
+
+    console.log('Symbol.toPrimitive的使用');
+
+    function Temperature(degrees) {
+        this.degrees = degrees;
+    }
+
+    Temperature.prototype[Symbol.toPrimitive] = function (hint) {
+        switch (hint) {
+            case 'string':
+                return `${this.degrees}\u00b0`;
+            case 'number':
+                return this.degrees;
+            case 'default':
+                return `${this.degrees}degrees`
+        }
+    }
+    const freezing = new Temperature(32);
+    console.log(freezing + '!');
+    console.log(freezing / 2);
+    console.log(String(freezing));
+
+    console.log('Symbol.toStringTag的使用---------');
+
+    function Person(name) {
+        this.name = name;
+    }
+
+    Person.prototype[Symbol.toStringTag] = "Person";
+
+    let me = new Person('张君宝');
+    console.log(Object.prototype.toString.call(me));
+</script>

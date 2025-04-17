@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>符号和符号属性</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="module">
+    import {customPerson} from "./person.js";
+    let firstName = Symbol();
+    let person = {};
+
+    person[firstName] = '李白';
+    console.log(person, person[firstName]);
+    console.log(typeof firstName);
+
+
+    let name1 = Symbol('name1');
+    let name2 = Symbol('name2');
+
+    let person2 = {
+        [name1]: '张三'
+    };
+    Object.defineProperty(person2, name1, {writable: false});
+    Object.defineProperty(person2, name2, {
+        value: '李四',
+        writable: false
+    });
+    // 无法修改
+    // person2[name1] = '张三的歌';
+    console.log(person2);
+    console.log(Object.keys(person2));
+
+    let uid = Symbol.for('uid');
+    let object = {};
+    object[uid] = 12345;
+    console.log(object);
+    console.log(object[Symbol.for('uid')]);
+
+
+    console.log('customPerson-----')
+    console.log(customPerson)
+    console.log(customPerson[Symbol.for('uid')])
+
+
+    let color1 = ['red', 'green'];
+    //concat不会改变数组本身
+    let color2 = color1.concat(['blue', 'black'], 'yellow', 'pink');
+
+    console.log(color1, color2);
+
+
+
+</script>
