@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  function *createIterator(){
+    let first = yield 1;
+    let second = yield first + 2;
+    yield second + 3;
+  }
+  let iterator = createIterator();
+  console.log(iterator.next())
+  debugger;
+  console.log(iterator.next(4))
+  console.log(iterator.next(5))
+  console.log(iterator.next(6))
+</script>

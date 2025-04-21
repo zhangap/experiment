@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>迭代器</title>
+</head>
+<body>
+    <input type="file" onchange="readFile(this)" accept="image/*">
+</body>
+</html>
+<script>
+    function readFile(event) {
+        console.log(event.files[0]);
+    }
+    // 创建迭代器
+    function createIterator(items) {
+        let i = 0;
+
+        return {
+            next() {
+                const done = i >= items.length;
+                const value = !done ? items[i++] : undefined;
+                return {
+                    done,
+                    value
+                }
+            }
+        }
+    }
+
+    let iterator = createIterator(['hello', 'world', '我是张君宝']);
+    console.log(iterator.next())
+    console.log(iterator.next())
+    console.log(iterator.next())
+    console.log(iterator.next());
+
+
+    function* createIterator2(items) {
+        // yield关键字只能用在生成器内部，用于其他任意位置都是语法错误，即使在生成器内部函数中也不行
+        for (let i = 0; i < items.length; i++) {
+            yield items[i];
+        }
+    }
+
+    iterator = createIterator2(['hello', 'world']);
+    console.log(iterator.next())
+    console.log(iterator.next())
+    console.log(iterator.next())
+
+    console.log('访问默认迭代器。。。。。');
+    let values = [1, 2, 3];
+    iterator = values[Symbol.iterator]();
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+
+    //Symbol.iterator指定了默认迭代器，你就可以使用它来检测一个对象是否能进行迭代
+    function isIterable(object) {
+        return typeof object[Symbol.iterator] === 'function';
+    }
+
+    console.log(isIterable([1, 2, 3]));
+    console.log(isIterable(new Map()));
+    console.log(isIterable(new WeakMap()));
+
+
+    console.log('创建可迭代对象');
+    const collection = {
+        items: [],
+        * [Symbol.iterator]() {
+            for (let item of this.items) {
+                yield item;
+            }
+        }
+    };
+    collection.items.push('hello');
+    collection.items.push('world');
+    collection.items.push('google');
+    // debugger;
+    for (let item of collection) {
+        console.log(item);
+    }
+
+    console.log('entries() 迭代器返回键和值、values迭代器返回存储在集合内的值;keys()迭代器返回集合中的每一个键');
+    let colors = ['red', 'green', 'blue'];
+    let tracking = new Set([1234, 5678, 9012]);
+    let data = new Map();
+
+    data.set('title', 'UnderStanding ES6');
+    data.set('format', 'ebook');
+
+    for (let item of colors.entries()) {
+        console.log(item)
+    }
+    for (let entry of tracking.entries()) {
+        console.log(entry)
+    }
+    for (let entry of data.entries()) {
+        console.log(entry)
+    }
+</script>
