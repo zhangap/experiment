@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6中的class</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    class PersonClass {
+        constructor(name) {
+            this.name = name;
+        }
+
+        sayName() {
+            console.log(this.name)
+        }
+    }
+
+    let person = new PersonClass('Jack');
+    person.sayName();
+    console.log(person instanceof PersonClass);
+    console.log(person instanceof Object);
+    console.log(typeof PersonClass.prototype.sayName);
+
+
+    function createObject(classDef) {
+        return new classDef();
+    }
+
+    let obj = createObject(class {
+        constructor(name) {
+            this.name = name || "Jack";
+        }
+
+        sayHi() {
+            console.log(`Hello ${this.name}`)
+        }
+    });
+
+    obj.sayHi();
+
+
+    console.log('访问器属性-----------');
+
+    class CustomHtmlElement {
+        constructor(element) {
+            this.element = element;
+        }
+
+        get html() {
+            return this.element.innerHTML;
+        }
+
+        set html(value) {
+            this.element.innerHTML = value;
+        }
+    }
+
+    const descriptor = Object.getOwnPropertyDescriptor(CustomHtmlElement.prototype, 'html');
+    console.log(descriptor);
+
+
+    console.log('集合.........')
+
+    class Collection {
+        constructor() {
+            this.items = [];
+        }
+
+        * [Symbol.iterator]() {
+            yield* this.items.values();
+        }
+    }
+
+    const collection = new Collection();
+    collection.items.push('Jack1');
+    collection.items.push('Jack2');
+    collection.items.push('Jack3');
+
+    for (let item of collection) {
+        console.log(item);
+    }
+
+    console.log('使用extends来实现继承功能..................');
+
+    class Rectangle {
+        constructor(width, height) {
+            this.width = width;
+            this.height = height;
+        }
+
+        getArea() {
+            return this.width * this.height;
+        }
+    }
+
+    class Square extends Rectangle {
+        constructor(width, height) {
+            // 以下注释代码会报错，因为在调用super之前，不允许使用this
+            // console.log(this.width)
+            super(width, height);
+        }
+    }
+
+    const square = new Square(10, 10);
+    console.log(square.getArea());
+    // 使用super关键字时需要牢记以下几点：
+    // 1、只能在派生类中使用super，若尝试在非派生的类或函数中使用，会抛出异常
+    // 2、在构造器中，你必须在访问this之前调用super，由于super（）负责初始化this，因此视图先访问this自然会造成错误
+    // 3、 唯一能避免调用super的方法，是从类构造器中返回一个对象
+
+</script>
