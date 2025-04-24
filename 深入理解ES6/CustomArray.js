@@ -1,3 +1,4 @@
+console.log('模块中的顶级作用于this',this);
 function toUint32(value) {
     return Math.floor(Math.abs(Number(value))) % Math.pow(2, 32);
 }
