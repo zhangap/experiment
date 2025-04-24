@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代理和反射接口</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    const person = {
+        name: '张三丰',
+        age: 20,
+    };
+
+    let proxy = new Proxy(person, {
+        get(target, name, instance) {
+            // 可以拦截访问不存在的属性访问
+            if (!(name in instance)) {
+                console.log(`Property ${name} doesn't exists`);
+                return '';
+            } else {
+                console.log('get被调用')
+                return Reflect.get(target, name, instance);
+            }
+        },
+        set(target, name, value) {
+            // debugger;
+            if (name === 'age' && isNaN(value)) {
+                return console.log('age is not a number')
+            }
+            return Reflect.set(target, name, value);
+        },
+        has(target, name) {
+            if (name === 'age') {
+                console.log('年龄不能被枚举出来。。。');
+                return false;
+            } else {
+                return Reflect.has(target, name);
+            }
+        },
+        deleteProperty(target, name) {
+            if (name === 'name') {
+                console.log(`属性${name}即将被删除`);
+                return false;
+            } else {
+                return Reflect.deleteProperty(target, name);
+            }
+        },
+        getPrototypeOf(target) {
+            return null
+        },
+        setPrototypeOf(target, v) {
+            return false;
+        },
+        //用于表明目标对象是否可被扩展
+        isExtensible(target) {
+            return Reflect.isExtensible(target);
+        },
+        //用于表明操作是否已经成功
+        preventExtensions(target) {
+            return Reflect.preventExtensions(target);
+        },
+        defineProperty(target, name, value) {
+            debugger;
+            if (name === 'symbol') {
+                console.error('阻止符号的定义');
+                return false;
+            } else {
+                return Reflect.defineProperty(target, name, value);
+            }
+        },
+        getOwnPropertyDescriptor(target, name) {
+            return Reflect.getOwnPropertyDescriptor(target, name);
+        }
+    });
+
+    console.log(proxy);
+    proxy.name = '张无忌';
+    //在设置age的时候，由于age不是数字，所以会抛出异常，这个就是set方法的验证拦截作用
+    // proxy.age = 'haha';
+    // console.log(proxy);
+
+    console.log(proxy.name + proxy.age);
+    console.log('访问一个不存在的属性', proxy.address);
+    console.log('age' in proxy);
+    delete proxy.name;
+
+    const targetProto = Object.getPrototypeOf(person);
+    const proxyProto = Object.getPrototypeOf(proxy);
+    console.log(targetProto, proxyProto);
+    console.log(targetProto === Object.prototype);
+    console.log(proxyProto === Object.prototype);
+
+    Object.setPrototypeOf(person, {});
+    // 以下代码会报错，直接注释掉
+    // Object.setPrototypeOf(proxy, {});
+
+    console.log('isExtensible和preventExtensions方法的使用')
+    console.log(Object.isExtensible(proxy));
+    console.log(Object.isExtensible(person));
+    Object.preventExtensions(proxy);
+    console.log(Object.isExtensible(proxy));
+    console.log(Object.isExtensible(person));
+
+
+    // 获取某个属性的描述符
+    console.log(Object.getOwnPropertyDescriptor(proxy, 'name'))
+
+    const testObj = {name: '张三'};
+    const nameSymbol = Symbol('test');
+    Object.defineProperty(testObj, nameSymbol, {
+        value: '测试值'
+    });
+    console.log(testObj);
+
+
+    function Numbers(...values) {
+        if (typeof new.target === 'undefined') {
+            throw new Error('this function be called with new.')
+        }
+        this.value = values;
+    }
+
+    const NumbersProxy = new Proxy(Numbers, {
+        apply(target, name, instance) {
+            //此处相当于调用了new方法
+            return Reflect.construct(target, instance);
+        }
+    })
+    debugger;
+    const instance = NumbersProxy(1, 2, 3, 4);
+    console.log(instance.value);
+
+    console.log('可被撤销的代理...');
+    const target = {
+        name: '张三丰',
+        age: 100
+    };
+    const {proxy: proxy2, revoke} = Proxy.revocable(target, {});
+    console.log(proxy2.name)
+    revoke();
+    // 抛出异常
+    // console.log(proxy2.name)
+</script>
+<script type="module">
+    import './CustomArray.js';
+    import './将代理对象作为原型来使用.js'
+</script>
